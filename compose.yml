@@ -1,0 +1,16 @@
+# 🐳 docker-compose.yml — Planity
+
+services:
+  planity:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app/server
+      - ./client:/app/client
+      - ./data:/tmp/planity
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped

@@ -1,0 +1,95 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+      - alpha
+      - beta
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build multiplatform executables
+        run: npm run build
+
+      - name: 📤 Upload Windows Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-windows
+          path: dist/planity-win.exe
+
+      - name: 📤 Upload Linux Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-linux
+          path: dist/planity-linux
+
+      - name: 📤 Upload macOS Executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-macos
+          path: dist/planity-macos
+
+  release:
+    needs: build
+    if: |
+      contains(github.ref, 'refs/heads/master') ||
+      contains(github.ref, 'refs/heads/alpha') ||
+      contains(github.ref, 'refs/heads/beta')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 📥 Download Windows Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-windows
+          path: dist
+
+      - name: 📥 Download Linux Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-linux
+          path: dist
+
+      - name: 📥 Download macOS Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-macos
+          path: dist
+
+      - name: 🚀 Install semantic-release and plugins
+        run: |
+          npm install --save-dev semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @semantic-release/github \
+            conventional-changelog-conventionalcommits
+
+      - name: 🧠 Run semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release

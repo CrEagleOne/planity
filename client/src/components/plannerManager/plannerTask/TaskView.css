@@ -1,0 +1,908 @@
+
+/* General styles */
+.task-table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+.task-table-container h2 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Task actions */
+.task-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.add-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.refresh-button {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.refresh-button:hover {
+  background-color: #4a5568;
+}
+
+.view-mode-selector {
+  display: flex;
+  margin-left: auto;
+}
+
+.view-mode-selector .button {
+  padding: 0.5rem;
+}
+
+.view-mode-selector .button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.view-mode-selector svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Task filters */
+.task-filters {
+  background-color: var(--card-bg);
+  border-radius: calc(var(--border-radius) * 2);
+  padding: 0;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: visible !important;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filters-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.filters-header:hover {
+  background-color: #5a4fcf;
+}
+
+.filters-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filters-content {
+  padding: 1rem;
+  max-height: 1000px;
+  overflow: visible !important;
+  transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.2s ease;
+  opacity: 1;
+}
+
+.filters-content.hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+
+.active-filter-badge {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.active-filter-badge:hover {
+  background-color: #5a4fcf;
+  transform: translateY(-1px);
+}
+
+.active-filter-badge .remove-filter {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+}
+
+.clear-all-filters {
+  background: none;
+  border: none;
+  color: var(--text-color-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.clear-all-filters:hover {
+  color: var(--error-color);
+}
+
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.filter-group .filter-icon {
+  color: var(--primary-color);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.filter-group .form-input,
+.filter-group .basic-multi-select__control{
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.filter-group .form-input:focus,
+.filter-group .basic-multi-select__control--is-focused{
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+  outline: none;
+}
+
+.filter-group .form-input::placeholder,
+.filter-group .basic-multi-select__placeholder{
+  color: var(--text-color-secondary);
+}
+
+/* Animation pour l'apparition des filtres */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 992px) {
+  /* Recherche seule sur sa ligne */
+  .filter-row.search-row {
+    display: block;
+  }
+
+  /* Dates sur une ligne */
+  .filter-row.dates-row .filter-group {
+    flex: 1;
+    min-width: calc(50% - 0.5rem);
+  }
+
+  /* Catégories et personnes sur une ligne */
+  .filter-row.categories-people-row .filter-group {
+    flex: 1;
+    min-width: calc(50% - 0.5rem);
+  }
+
+  /* Statut, priorité et récurrence sur une ligne */
+  .filter-row.status-priority-recurrence-row .filter-group {
+    flex: 1;
+    min-width: calc(33.33% - 0.66rem);
+  }
+}
+
+@media (max-width: 991px) {
+  .filter-row .filter-group {
+    flex: 1 1 100%;
+  }
+}
+
+.basic-multi-select__menu {
+  position: absolute;
+  z-index: 9999;
+  margin-top: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.basic-multi-select__control {
+  min-height: 42px !important;
+   z-index: 2;
+}
+
+.basic-multi-select__multi-value {
+  background-color: var(--primary-color) !important;
+  border-radius: 1rem;
+}
+
+.basic-multi-select__multi-value__label {
+  color: white !important;
+}
+
+.basic-multi-select__multi-value__remove {
+  color: white !important;
+  border-radius: 0 1rem 1rem 0 !important;
+}
+
+/* Pour les devices mobiles */
+@media (max-width: 768px) {
+  .filters-header {
+    padding: 0.75rem;
+  }
+
+  .filter-toggle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .active-filter-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+/* Dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.dashboard-card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.dashboard-card p {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Kanban board */
+.kanban-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kanban-column {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-column.drag-over {
+  background-color: rgba(108, 92, 231, 0.05);
+  border: 2px dashed var(--primary-color);
+}
+
+.kanban-column h3 {
+  margin-top: 0;
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-count {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.kanban-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-grow: 1;
+  min-height: 100px;
+}
+
+.kanban-card {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  cursor: grab;
+  transition: transform 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.kanban-card.overdue {
+  border-left: 4px solid var(--error-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1rem;
+  width: 80%;
+}
+
+.overdue-badge {
+  background-color: var(--error-color);
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--border-radius);
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+}
+
+.card-body {
+  font-size: 0.9rem;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.card-date {
+  color: var(--text-color);
+}
+
+.due-date {
+  font-weight: bold;
+}
+
+.due-date.overdue {
+  color: var(--error-color);
+}
+
+.priority-badge {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--border-radius);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.priority-badge.low {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.priority-badge.medium {
+  background-color: #2196F3;
+  color: white;
+}
+
+.priority-badge.high {
+  background-color: #FF9800;
+  color: white;
+}
+
+.priority-badge.urgent {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.card-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-tag {
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--border-radius);
+  font-size: 0.7rem;
+  color: white;
+}
+
+.more-tag {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.card-people {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.people-tag {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.people-avatar-small {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.people-avatar-placeholder-small {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.7rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+}
+
+.card-actions button {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.edit-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+}
+
+.delete-button {
+  background-color: var(--error-color);
+  color: white;
+  padding: 0.25rem 0.5rem;
+}
+
+.empty-column-message {
+  text-align: center;
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Task table */
+.task-table-responsive {
+  overflow-x: auto;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.task-table th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.task-table th:hover {
+  background-color: #5a4fcf;
+}
+
+.task-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.task-table tr:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+}
+
+.task-table tr.overdue {
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.people-tags {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.no-tasks-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-color-secondary);
+}
+
+/* Modal styles */
+.task-modal {
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: var(--shadow);
+  color: var(--text-color);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.modal-close:hover {
+  color: var(--error-color);
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.form-error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.modal-button.primary {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.modal-button.secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ReactModal overlay */
+.ReactModal__Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .task-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .kanban-container {
+    flex-direction: column;
+  }
+
+  .kanban-column {
+    min-width: auto;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* Custom styles for the application header */
+.app-header {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  height: var(--header-height);
+}
+
+/* Main content area */
+.main-content {
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+  height: calc(100vh - var(--header-height));
+  position: fixed;
+  left: 0;
+  top: var(--header-height);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Content area with sidebar */
+.content-with-sidebar {
+  margin-left: 250px;
+  padding: 1rem;
+}
+
+/* For the loading screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Dark theme specific adjustments */
+body.dark-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

@@ -1,0 +1,200 @@
+/* Variables CSS pour la personnalisation facile */
+
+/* Conteneur pour le sélecteur de langue */
+.language-selector-container {
+  width: auto;
+  max-width: 130px;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  z-index: 1000;
+  position: relative; /* Ajout pour le positionnement absolu du dropdown */
+}
+
+/* Version réduite du conteneur */
+.language-selector-container.collapsed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+}
+
+/* Bouton du sélecteur de langue */
+.language-selector-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.language-selector-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Style pour les drapeaux */
+.language-current-flag svg,
+.flag svg {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.language-current-text {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 0.5rem;
+}
+
+.globe-icon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+/* Version réduite du sélecteur de langue */
+.language-selector-container.collapsed .language-selector-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.language-selector-container.collapsed .language-flag svg {
+  width: 28px;
+  height: 18px;
+}
+
+/* Dropdown des langues */
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 10px); /* Changement: top au lieu de bottom */
+  left: 0;
+  width: 180px;
+  background: var(--bg-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 2000 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transform-origin: top center; /* Modifié pour correspondre à la nouvelle position */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+
+}
+
+/* Afficher le dropdown lorsque la classe dropdown-open est présente */
+.language-selector-container.dropdown-open .language-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Version compacte du dropdown */
+.language-dropdown.collapsed-dropdown {
+  width: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px); /* Changement: top au lieu de bottom */
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Style des options de langue */
+.language-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--sidebar-text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.language-option.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--sidebar-text-color-active);
+}
+
+.language-option .flag svg {
+  width: 24px;
+  height: 16px;
+  margin-right: 0.75rem;
+}
+
+.language-option .lang-name {
+  flex-grow: 1;
+}
+
+.language-option .checkmark {
+  color: var(--primary-color);
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* Mode compact pour les options */
+.language-selector-container.collapsed .language-option {
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.language-selector-container.collapsed .language-option .flag svg {
+  width: 32px;
+  height: 21px;
+  margin-right: 0;
+}
+
+.language-selector-container.collapsed .language-option .lang-name,
+.language-selector-container.collapsed .language-option .checkmark {
+  display: none;
+}
+
+/* Styles pour mobile */
+@media (max-width: 768px) {
+  .language-dropdown {
+    width: 150px;
+    bottom: 100%;
+    left: 0;
+    right: auto;
+  }
+}
+
+/* Styles d'accessibilité */
+.language-selector-button:focus,
+.language-option:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+}
+
+.language-selector-button:active {
+  transform: scale(0.98);
+}

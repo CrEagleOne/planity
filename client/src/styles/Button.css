@@ -1,0 +1,354 @@
+/* =============================================
+   Boutons
+============================================= */
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.contact-book-container .button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Boutons spécifiques */
+.primary-button {
+  background-color: var(--primary-color) !important;
+}
+
+.secondary-button {
+  background-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.secondary-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-button {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.view-button:hover {
+  background-color: #0a78d1;
+  transform: scale(1.05);
+}
+
+/* Boutons d'action */
+.edit-button {
+  background-color: var(--info-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  margin-right: 0.5rem;
+}
+
+.edit-button:hover {
+  background-color: #0779e4;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.delete-button {
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.delete-button:hover {
+  background-color: #ff1b4d;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.edit-button, .delete-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .edit-button, .delete-button {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Style pour le bouton ajouter */
+.add-button {
+  background-color: var(--primary-color, #4285f4);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.add-button:hover:not(:disabled) {
+  background-color: #3367d6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.add-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+.add-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.add-button .button-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.add-button .add-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.add-button:active:not(:disabled) .add-icon {
+  transform: scale(0.9);
+}
+
+/* Effet de ripple (vagues) au clic */
+.add-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1;
+}
+
+.add-button:not(:disabled):active::after {
+  opacity: 1;
+  transform: scale(2);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Style pour l'icône SVG */
+.add-button svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
+}
+
+/* Animation de chargement si nécessaire */
+.add-button.loading {
+  position: relative;
+}
+
+.add-button.loading .button-text {
+  opacity: 0;
+}
+
+.add-button.loading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Style de base pour le bouton rafraîchir */
+.refresh-button {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.refresh-button:hover {
+  background-color: rgba(162, 155, 254, 0.8);
+  transform: rotate(90deg);
+}
+
+.refresh-button:hover:not(:disabled) {
+  background-color: rgba(var(--primary-color-rgb), 0.1);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.refresh-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.refresh-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refresh-button .refresh-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.refresh-button:not(:disabled):active .refresh-icon {
+  transform: rotate(180deg);
+}
+
+/* Animation lorsque le bouton est cliqué */
+.refresh-button.refreshing .refresh-icon {
+  animation: rotate 1s linear infinite;
+}
+
+/* Animation pour le chargement des données */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Style pour l'icône SVG */
+.refresh-button svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2px;
+  transition: all 0.2s ease;
+}
+
+/* Effet de ripples (vagues) au clic */
+.refresh-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.refresh-button:not(:disabled):active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+

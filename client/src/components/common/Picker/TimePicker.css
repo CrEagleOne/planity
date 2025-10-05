@@ -1,0 +1,216 @@
+/* ========== TIME PICKER STYLES ========== */
+/* Style pour le conteneur du time picker */
+.react-datepicker__time-container,
+.react-datepicker__time,
+.react-datepicker__time-box {
+  background-color: var(--card-bg) !important;
+  border-radius: 0 !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+/* Style pour le header du time picker */
+.react-datepicker__time-header {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  padding: 0 var(--spacing-md) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 600 !important;
+  font-size: var(--font-md) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Style pour le contenu du header */
+.react-datepicker__time-header__content {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  line-height: normal !important;
+}
+
+/* Style pour les éléments de liste dans le header */
+.react-datepicker__time-header ul {
+  display: none !important;
+}
+
+/* Style pour la liste des heures/minutes */
+.react-datepicker__time-list {
+  background-color: var(--card-bg) !important;
+  border: none !important;
+  max-height: 270px !important;
+  overflow-y: auto !important;
+}
+
+/* Style pour les éléments de la liste */
+.react-datepicker__time-list-item {
+  color: var(--text-color) !important;
+  background-color: var(--card-bg) !important;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  border-radius: 0 !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Style pour les éléments survolés */
+.react-datepicker__time-list-item:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+/* Style pour les éléments sélectionnés */
+.react-datepicker__time-list-item--selected {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+}
+
+/* Style pour le bouton OK */
+.react-datepicker__time-box button {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+  border: none !important;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  border-radius: var(--border-radius) !important;
+  margin: var(--spacing-sm) !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+/* Style pour le bouton OK au survol */
+.react-datepicker__time-box button:hover {
+  background-color: var(--primary-color-dark) !important;
+}
+
+/* Style pour le header du time picker */
+.react-datepicker-time__header {
+  color: var(--text-color) !important;
+}
+
+/* Style pour la scrollbar */
+.react-datepicker__time-list::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color) !important;
+  border-radius: 3px !important;
+}
+
+.react-datepicker__time-list::-webkit-scrollbar-track {
+  background-color: var(--input-bg) !important;
+}
+
+/* Style pour les onglets de sélection */
+.react-datepicker__time-tab {
+  background-color: var(--card-bg) !important;
+  color: var(--text-secondary) !important;
+}
+
+.react-datepicker__time-tab:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+.react-datepicker__time-tab--selected {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+}
+
+/* Style pour les boutons de navigation */
+.react-datepicker__navigation--time {
+  background: transparent !important;
+  position: absolute !important;
+  top: 10px !important;
+}
+
+.react-datepicker__navigation--time:before {
+  border-color: var(--primary-color) !important;
+}
+
+/* Style pour le conteneur des heures/minutes */
+.react-datepicker__time-box {
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: var(--card-bg) !important;
+}
+
+/* Style pour les listes individuelles (heures, minutes, etc.) */
+.react-datepicker__time-box-item {
+  flex: 1 !important;
+}
+
+/* Style pour les en-têtes des colonnes */
+.react-datepicker__time-box-header {
+  color: var(--text-secondary) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  padding-bottom: 0.5rem !important;
+  text-align: center !important;
+}
+
+/* Style pour la sélection active */
+.react-datepicker__time-list-item--selected {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+}
+
+/* Style pour la sélection active au survol */
+.react-datepicker__time-list-item--selected:hover {
+  background-color: var(--primary-color-dark) !important;
+}
+
+/* Ciblage spécifique pour les cas où le fond reste blanc */
+.react-datepicker__time .react-datepicker__time-box,
+.react-datepicker__time-container .react-datepicker__time-box,
+.react-datepicker__time-container .react-datepicker__time-list,
+.react-datepicker__time-container .react-datepicker__time-list-item {
+  background-color: var(--card-bg) !important;
+}
+
+/* Forcer les couleurs pour le thème sombre */
+[data-theme="dark"] .react-datepicker__time-container,
+[data-theme="dark"] .react-datepicker__time-box,
+[data-theme="dark"] .react-datepicker__time-list,
+[data-theme="dark"] .react-datepicker__time-list-item {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Forcer les couleurs pour les éléments enfants */
+.react-datepicker__time-container *,
+.react-datepicker__time-box *,
+.react-datepicker__time-list *,
+.react-datepicker__time-list-item * {
+  background-color: var(--dark-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Style pour les inputs de temps */
+.react-datepicker__time-input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Style pour la liste déroulante des heures/minutes */
+.react-datepicker__time-container .react-datepicker__time-list {
+  background-color: var(--card-bg) !important;
+}
+
+/* Style pour les éléments de la liste déroulante */
+.react-datepicker__time-container .react-datepicker__time-list-item {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Style pour les éléments sélectionnés dans la liste déroulante */
+.react-datepicker__time-container .react-datepicker__time-list-item--selected {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+}
+
+/* Style pour le survol des éléments dans la liste déroulante */
+.react-datepicker__time-container .react-datepicker__time-list-item:hover {
+  background-color: var(--secondary-color) !important;
+  color: var(--dark-color) !important;
+}

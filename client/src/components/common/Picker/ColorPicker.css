@@ -1,0 +1,209 @@
+/* Color Picker Styles - colorpicker.css */
+
+/* Conteneur principal du color picker dans la modale */
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin-top: 0.5rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Aperçu de la couleur sélectionnée */
+.color-preview {
+  width: 100%;
+  height: 40px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.color-picker-container label {
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.color-picker {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.color-preview-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-preview-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+/* Portal pour le color picker (s'affiche au-dessus de tout) */
+.color-picker-portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 12000 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Fond sombre derrière le color picker */
+.color-picker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 11999;
+  pointer-events: auto;
+}
+
+/* Conteneur du color picker */
+.color-picker-wrapper {
+  background-color: var(--dark-color) !important;
+  position: relative;
+  z-index: 12000;
+  pointer-events: auto;
+  border-radius: var(--border-radius);
+  padding: 15px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  max-width: 90%;
+  width: auto;
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Bouton de validation dans le color picker */
+.color-picker-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.color-picker-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-fast);
+}
+
+.color-picker-button:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Styles spécifiques pour le ChromePicker */
+.ChromePicker {
+  width: auto !important;
+  box-shadow: none !important;
+  background-color: var(--card-bg) !important;
+  position: relative;
+  z-index: 12001 !important;
+}
+
+.ChromePicker .flexbox-fix {
+  width: 230px !important;
+}
+
+/* Styles pour les éléments internes du ChromePicker */
+.chrome-picker {
+  box-shadow: none !important;
+  border: none !important;
+  background-color: var(--input-bg) !important;
+}
+
+/* Styles pour les inputs du ChromePicker */
+.chrome-picker input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+  padding: 4px !important;
+}
+
+/* Styles pour les poignées de sélection */
+.chrome-picker .alpha-pointer,
+.chrome-picker .saturation-pointer,
+.chrome-picker .hue-pointer {
+  background: var(--text-color) !important;
+}
+
+/* Styles pour les zones de sélection de couleur */
+.chrome-picker .saturation-white,
+.chrome-picker .saturation-black {
+  pointer-events: none !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .color-picker-wrapper {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
+/* Styles pour le color picker dans la modale */
+.modal-content .color-preview {
+  position: relative;
+  z-index: 2;
+}
+
+.modal-content .color-preview-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-content .color-preview-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}

@@ -1,0 +1,80 @@
+{
+  "name": "planity",
+  "private": true,
+  "bin": "server/src/index.js",
+  "main": "server/src/index.js",
+  "window": {
+    "title": "planity",
+    "width": 800,
+    "height": 600,
+    "show": false
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start": "npm-run-all --parallel start:client start:server",
+    "start:dev": "npm-run-all --parallel start:client dev:server",
+    "start:client": "npm --prefix client start",
+    "start:server": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
+    "build": "npm --prefix client run build && pkg ."
+  },
+  "dependencies": {
+    "@nodegui/nodegui": "^0.73.0",
+    "pkg": "^5.8.0"
+  },
+  "devDependencies": {
+    "@nodegui/packer": "^1.5.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "npm-run-all": "^4.x",
+    "nw-builder": "^4.15.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-normalize": "^13.0.1",
+    "postcss-preset-env": "^10.4.0",
+    "prettier": "^3.3.3",
+    "semantic-release": "^24.2.9"
+  },
+  "pkg": {
+    "scripts": "server/src/**/*.js",
+    "assets": [
+      "node_modules/sqlite3/build/**/*",
+      "client/build/**/*",
+      "client/src/assets/favicon.ico"
+    ],
+    "targets": [
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
+    ],
+    "outputPath": "dist",
+    "options": {
+      "no-bytecode": true,
+      "no-native-build": true
+    },
+    "win": {
+      "requestedExecutionLevel": "asInvoker",
+      "applicationType": "gui",
+      "icon": "client/public/assets/favicon.ico"
+    },
+    "mac": {
+      "icon": "client/public/assets/favicon.icns"
+    },
+    "linux": {
+      "icon": "client/public/assets/favicon.png"
+    }
+  }
+}

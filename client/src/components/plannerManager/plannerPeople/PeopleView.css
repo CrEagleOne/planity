@@ -1,0 +1,456 @@
+/* PeopleManagement.css - Version moderne adaptée à la modale générique */
+
+/* Variables CSS pour un look ultra moderne */
+
+/* Conteneur principal */
+.people-management-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Titre avec effet moderne */
+.people-management-container h2 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.people-management-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+}
+
+/* Bouton d'ajout avec effet moderne */
+.people-actions {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Liste des personnes avec design moderne */
+.people-list {
+  margin-top: 1rem;
+}
+
+.empty-state, .loading-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  margin-top: 2rem;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Carte de personne avec effet moderne */
+.person-card {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.person-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.person-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.person-avatar-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.person-avatar, .person-avatar-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.person-card:hover .person-avatar,
+.person-card:hover .person-avatar-placeholder {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.person-info {
+  text-align: center;
+  width: 100%;
+}
+
+.person-info h3 {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.person-detail {
+  margin: 0.25rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.person-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.person-card:hover .person-actions {
+  opacity: 1;
+}
+
+
+/* Contenu de la modale avec design ultra moderne */
+.ReactModal__Content.people-modal {
+  background-color: var(--dark-color) !important;
+  color: var(--text-color) !important;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 1400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: none !important;
+  padding: 0;
+  position: relative;
+  z-index: 10001;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: var(--transition);
+  animation: slideUp 0.3s ease-out forwards;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to bottom right, var(--dark-color), #1a1a2e);
+}
+
+@media (min-width: 992px) {
+  .avatar-upload-section {
+    width: 280px;
+    flex-shrink: 0;
+  }
+}
+
+/* Section upload d'avatar moderne */
+.avatar-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.avatar-drop-zone {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+  border: 2px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-drop-zone:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+}
+
+.avatar-drop-zone.drag-over {
+  border-color: var(--primary-color);
+  background-color: rgba(67, 97, 238, 0.1);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+}
+
+.avatar-preview-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.avatar-drop-zone:hover .avatar-image {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.dropzone-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+  border-radius: 50%;
+}
+
+.avatar-drop-zone:hover .dropzone-content,
+.avatar-drop-zone.drag-over .dropzone-content {
+  opacity: 1;
+}
+
+.dropzone-text {
+  color: white;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.dropzone-subtext {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.file-requirements {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.upload-icon {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.compression-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid white;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.compression-message {
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.avatar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Boutons modernes avec effet de lueur */
+.upload-button, .remove-avatar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.upload-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
+}
+
+.upload-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: var(--transition);
+}
+
+.upload-button:hover::before {
+  left: 100%;
+}
+
+.remove-avatar-button {
+  background-color: var(--danger-color);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.remove-avatar-button:hover {
+  background-color: rgb(231, 11, 11);
+  color: var(--text-color);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Section de l'éditeur d'avatar */
+.avatar-editor-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.avatar-editor-container h4 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.avatar-editor-container h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .avatar-upload-section {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+}
+
+.avatar-drop-zone.drag-over {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Style pour les boutons de l'éditeur d'avatar */
+.avatar-editor-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.avatar-editor-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+/* Style pour l'éditeur d'avatar */
+.avatar-editor-container .avatar-editor {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+}
